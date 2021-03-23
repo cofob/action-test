@@ -1,0 +1,18 @@
+name: Deploy App
+
+on: release
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install sshpass
+        run: sudo apt-get install sshpass
+      - name: Run command on SSH server
+        run: |
+            sshpass -p $SSH_PASS ssh -o "StrictHoststKeyChecking=no" $SSH_USER@$SSH_HOST $SSH_COMMAND
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PASS: ${{ secrets.SSH_PASS }}
+          SSH_COMMAND: ${{ secrets.SSH_COMMAND }}
