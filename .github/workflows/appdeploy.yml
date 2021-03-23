@@ -9,4 +9,4 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install sshpass
       - name: Run command on SSH server
-        run: sshpass -p ${{ secrets.SSH_PASS }} ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} ${{ secrets.SSH_COMMAND }}
+        run: sshpass -p ${{ secrets.SSH_PASS }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} ${{ secrets.SSH_COMMAND }}
