@@ -9,9 +9,4 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install sshpass
       - name: Run command on SSH server
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PASS: ${{ secrets.SSH_PASS }}
-          SSH_COMMAND: ${{ secrets.SSH_COMMAND }}
-        run: sshpass -p $SSH_PASS ssh $SSH_USER@$SSH_HOST $SSH_COMMAND
+        run: sshpass -p ${{ secrets.SSH_PASS }} ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} ${{ secrets.SSH_COMMAND }}
